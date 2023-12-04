@@ -1,7 +1,6 @@
 mod prelude {
 
     pub use crate::custom_error::AocError;
-    pub use itertools::Itertools;
 }
 
 pub mod custom_error;

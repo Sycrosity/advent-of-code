@@ -1,6 +1,6 @@
 use crate::prelude::*;
 
-#[tracing::instrument]
+#[tracing::instrument(skip_all)]
 pub fn process(input: &str) -> miette::Result<u32, AocError> {
     Ok(input
         .lines()

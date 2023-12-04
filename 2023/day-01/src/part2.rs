@@ -5,6 +5,7 @@ pub fn process(input: &str) -> miette::Result<u32, AocError> {
     Ok(input.lines().map(process_line).sum::<u32>())
 }
 
+#[tracing::instrument]
 fn process_line(line: &str) -> u32 {
     const NUMBERWORDS: [&str; 10] = [
         "zero", "one", "two", "three", "four", "five", "six", "seven", "eight", "nine",
