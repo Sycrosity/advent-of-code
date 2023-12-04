@@ -20,7 +20,7 @@ fn process_line(line: &str) -> u32 {
 
             NUMBERWORDS.iter().enumerate().find_map(|(i, numberword)| {
                 if line[index..].starts_with(numberword) {
-                    Some(i as u32)
+                    Some((i + 1) as u32)
                 } else {
                     None
                 }
