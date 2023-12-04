@@ -1,2 +1,7 @@
+#rust
 /target
+
+#profiling
+
 .bench.txt
+dhat-heap.json

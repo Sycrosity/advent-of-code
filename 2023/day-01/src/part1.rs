@@ -2,19 +2,23 @@ use crate::prelude::*;
 
 #[tracing::instrument(skip_all)]
 pub fn process(input: &str) -> miette::Result<u32, AocError> {
-    Ok(input
-        .lines()
-        .map(|line| {
-            let mut numbers = line.chars().filter_map(|char| char.to_digit(10));
+    Ok(
+        input
+            .lines() //split by newlines into an iterator of lines
+            .map(|line| {
+                let mut numbers = line
+                    .chars() //split into an iter of char's
+                    .filter_map(|char| char.to_digit(10)); //for each char, attempt to convert it to a base 10 integer (u32), else discard it.
 
-            let first = numbers.next().expect("there to be at least 1 number");
+                let first = numbers.next().expect("there to be at least 1 number");
 
-            match numbers.last() {
-                Some(last) => first * 10 + last,
-                None => first * 10 + first,
-            }
-        })
-        .sum())
+                match numbers.last() {
+                    Some(last) => first * 10 + last, //the first number * 10 + the last is equivelant to concatting the first and last numbers.
+                    None => first * 10 + first, //if there is no `.last()` item (as `.first()` consumes the first item), then there must be only one number
+                }
+            })
+            .sum(), //sum the iterator of u32's into one value.
+    )
 }
 
 #[cfg(test)]
