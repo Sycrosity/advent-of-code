@@ -10,13 +10,11 @@ pub fn process(input: &str) -> miette::Result<u32, AocError> {
             let first = numbers.next().expect("there to be at least 1 number");
 
             match numbers.last() {
-                Some(last) => format!("{first}{last}"),
-                None => format!("{first}{first}"),
+                Some(last) => first * 10 + last,
+                None => first * 10 + first,
             }
-            .parse::<u32>()
-            .expect("this concat to be a valid number")
         })
-        .fold(0, |acc, num| acc + num))
+        .sum())
 }
 
 #[cfg(test)]

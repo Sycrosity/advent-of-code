@@ -1,66 +1,39 @@
-use std::u32;
-
-use tracing::info;
-
 use crate::prelude::*;
-
-const NUMBERWORD_CHARS: [char; 14] = [
-    'o', 'n', 'e', 't', 'w', 'h', 'r', 'f', 'u', 'i', 'v', 's', 'x', 'g',
-];
 
 const NUMBERWORDS: [&str; 10] = [
     "zero", "one", "two", "three", "four", "five", "six", "seven", "eight", "nine",
 ];
 
-#[inline]
-fn is_numbermeric(ch: &char) -> bool {
-    NUMBERWORD_CHARS.contains(ch)
-}
-
 #[tracing::instrument(skip_all)]
 pub fn process(input: &str) -> miette::Result<u32, AocError> {
-    info!("er");
-    Ok(input
-        .lines()
-        .map(|line| {
-            // let line = line.replace(&NUMBERWORD_CHARS[..], "");
-
-            process_line(line)
-        })
-        .sum::<u32>())
-
-    // Err(AocError::UnknownError)
+    Ok(input.lines().map(process_line).sum::<u32>())
 }
 
 fn process_line(line: &str) -> u32 {
-    let nums: Vec<u32> = (0..line.len()).filter_map(|index| {
+    let nums: Vec<u32> = (0..line.len())
+        .filter_map(|index| {
+            let ch = &line.as_bytes()[index];
+            if ch.is_ascii_digit() {
+                return Some(*ch as u32 - 48);
+            }
 
-        let ch = &line.as_bytes()[index];
-        if ch.is_ascii_digit() {
-
-            return Some(*ch as u32 - 48);
-
-        }
-
-        NUMBERWORDS
-            .iter()
-            .enumerate()
-            .find_map(|(i, numberword)| {
+            NUMBERWORDS.iter().enumerate().find_map(|(i, numberword)| {
                 if line[index..].starts_with(numberword) {
                     Some(i as u32)
                 } else {
                     None
                 }
             })
-    }).collect();
+        })
+        .collect();
 
     let first = nums.first().expect("there to be at least 1 number");
     let last = nums.last().expect("there to be at least 1 number");
 
-    format!("{first}{last}")
-    .parse::<u32>()
-    .expect("this concat to be a valid number")
-
+    // String::from_utf8_lossy(&[(first + 48) as u8, (last + 48) as u8])
+    // .parse::<u32>()
+    // .expect("this concat to be a valid number")
+    first * 10 + last
 }
 
 #[cfg(test)]
