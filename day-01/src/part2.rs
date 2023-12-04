@@ -1,15 +1,15 @@
 use crate::prelude::*;
 
-const NUMBERWORDS: [&str; 10] = [
-    "zero", "one", "two", "three", "four", "five", "six", "seven", "eight", "nine",
-];
-
 #[tracing::instrument(skip_all)]
 pub fn process(input: &str) -> miette::Result<u32, AocError> {
     Ok(input.lines().map(process_line).sum::<u32>())
 }
 
 fn process_line(line: &str) -> u32 {
+    const NUMBERWORDS: [&str; 10] = [
+        "zero", "one", "two", "three", "four", "five", "six", "seven", "eight", "nine",
+    ];
+
     let nums: Vec<u32> = (0..line.len())
         .filter_map(|index| {
             let ch = &line.as_bytes()[index];
@@ -30,9 +30,6 @@ fn process_line(line: &str) -> u32 {
     let first = nums.first().expect("there to be at least 1 number");
     let last = nums.last().expect("there to be at least 1 number");
 
-    // String::from_utf8_lossy(&[(first + 48) as u8, (last + 48) as u8])
-    // .parse::<u32>()
-    // .expect("this concat to be a valid number")
     first * 10 + last
 }
 
