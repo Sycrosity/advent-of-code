@@ -14,6 +14,6 @@ running 0 tests
 test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
 
 day_01    fastest       │ slowest       │ median        │ mean          │ samples │ iters
-├─ part1  42.74 µs      │ 177.4 µs      │ 45.29 µs      │ 47 µs         │ 10000   │ 10000
-╰─ part2  278.7 µs      │ 368.9 µs      │ 283.6 µs      │ 286 µs        │ 10000   │ 10000
+├─ part1  43.66 µs      │ 84.29 µs      │ 46.7 µs       │ 48.55 µs      │ 1000    │ 1000
+╰─ part2  266.4 µs      │ 394 µs        │ 276.9 µs      │ 280.3 µs      │ 1000    │ 1000
 

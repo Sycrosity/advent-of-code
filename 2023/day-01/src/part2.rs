@@ -7,8 +7,8 @@ pub fn process(input: &str) -> miette::Result<u32, AocError> {
 
 #[tracing::instrument]
 fn process_line(line: &str) -> u32 {
-    const NUMBERWORDS: [&str; 10] = [
-        "zero", "one", "two", "three", "four", "five", "six", "seven", "eight", "nine",
+    const NUMBERWORDS: [&str; 9] = [
+        "one", "two", "three", "four", "five", "six", "seven", "eight", "nine",
     ];
 
     let nums: Vec<u32> = (0..line.len())

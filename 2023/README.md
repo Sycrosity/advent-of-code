@@ -5,5 +5,5 @@ To run benchmarks on your device for this, make sure to:
 1. Install rust at [rustup.rs](rustup.rs)
 2. Clone this repo with `git clone https://github.com/Sycrosity/advent-of-code` and `cd 2023`
 4. Install [just](https://just.systems/) by running `cargo install just` (or `brew install just` on macos)
-5. Run `just benchmark-all`
+5. Run `just bench-all`
 6. See the output in the `benchmarks.txt` file!
