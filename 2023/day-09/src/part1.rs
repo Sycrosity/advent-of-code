@@ -15,7 +15,7 @@ pub fn process(input: &str) -> miette::Result<i32, AocError> {
             let mut total = 0;
 
             while !line.iter().all(|num| num == &0) {
-                total += *line.last().expect("there to be a last item");
+                total += *line.last().unwrap();
 
                 line = line
                     .iter()
