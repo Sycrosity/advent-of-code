@@ -15,3 +15,5 @@ dhat day part:
     cargo run --profile dhat --features dhat-heap --package {{day}} --bin {{part}}
 init day:
     cargo generate --path ./daily-template --name {{day}}
+run day part:
+    cargo run --package {{day}} --bin {{part}}
