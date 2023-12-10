@@ -4,7 +4,7 @@ use crate::custom_error::AocError;
 
 #[tracing::instrument(skip_all)]
 pub fn process(input: &str) -> miette::Result<i32, AocError> {
-    let output = &input
+    let output = input
         .lines()
         .map(|line| {
             let mut line = line
@@ -28,7 +28,7 @@ pub fn process(input: &str) -> miette::Result<i32, AocError> {
         })
         .sum::<i32>();
 
-    Ok(*output)
+    Ok(output)
 }
 
 #[cfg(test)]
