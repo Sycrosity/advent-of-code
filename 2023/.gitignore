@@ -3,5 +3,5 @@
 
 #profiling
 
-.bench.txt
+*.bench.txt
 dhat-heap.json

@@ -137,6 +137,20 @@ dependencies = [
 ]
 
 [[package]]
+name = "day-02"
+version = "0.1.0"
+dependencies = [
+ "dhat",
+ "divan",
+ "itertools",
+ "miette",
+ "nom",
+ "thiserror",
+ "tracing",
+ "tracing-subscriber",
+]
+
+[[package]]
 name = "day-09"
 version = "0.1.0"
 dependencies = [
