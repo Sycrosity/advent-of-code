@@ -7,33 +7,28 @@ use crate::custom_error::AocError;
 #[tracing::instrument]
 pub fn process(input: &str) -> miette::Result<i32, AocError> {
     Ok(input
-    .lines()
-    .map(|line| {
-        let mut line = line
-            .split_whitespace()
-            .map(|numbers| numbers.parse::<i32>().expect("these to all be parseable"))
-            .collect_vec();
-
-        let mut first_nums = vec![];
-
-        while !line.iter().all(|num| num == &0) {
-
-            first_nums.push(*line.first().unwrap());
-
-            line = line
-                .iter()
-                .tuple_windows::<(&i32, &i32)>()
-                .map(|(a, b)| b - a)
+        .lines()
+        .map(|line| {
+            let mut line = line
+                .split_whitespace()
+                .map(|numbers| numbers.parse::<i32>().expect("these to all be parseable"))
                 .collect_vec();
-        }
 
-        first_nums.iter().rev().fold(0, |acc,num| {
+            let mut first_nums = vec![];
 
-            num - acc
+            while !line.iter().all(|num| num == &0) {
+                first_nums.push(*line.first().unwrap());
 
+                line = line
+                    .iter()
+                    .tuple_windows::<(&i32, &i32)>()
+                    .map(|(a, b)| b - a)
+                    .collect_vec();
+            }
+
+            first_nums.iter().rev().fold(0, |acc, num| num - acc)
         })
-    })
-    .sum::<i32>())
+        .sum::<i32>())
 }
 
 #[cfg(test)]
