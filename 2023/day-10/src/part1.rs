@@ -57,7 +57,6 @@ enum PipeType {
 }
 
 impl PipeType {
-
     /// Tells you which direction you are facing next when coming out of a specified [PipeType], coming from a certain direction.
     fn to_direction(self, from_direction: &Direction) -> Direction {
         use Direction::*;
@@ -109,7 +108,6 @@ enum Direction {
 }
 
 impl Direction {
-
     /// converts a direction into a point which when added to another point gives you where you would be going in that direction.
     fn to_point(self) -> IVec2 {
         match self {
