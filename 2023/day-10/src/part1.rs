@@ -43,6 +43,7 @@ pub fn process(input: &str) -> miette::Result<u32, AocError> {
     // Ok(0)
 }
 
+/// A type of pipe connector.
 #[derive(Debug, Eq, PartialEq, Clone, Copy)]
 enum PipeType {
     StartingPosition,
@@ -56,6 +57,8 @@ enum PipeType {
 }
 
 impl PipeType {
+
+    /// Tells you which direction you are facing next when coming out of a specified [PipeType], coming from a certain direction.
     fn to_direction(self, from_direction: &Direction) -> Direction {
         use Direction::*;
         use PipeType::*;
@@ -96,6 +99,7 @@ impl From<char> for PipeType {
     }
 }
 
+/// Which direction you are FACING - this is an important distinction.
 #[derive(Debug, Eq, PartialEq, Clone, Copy)]
 enum Direction {
     North,
@@ -105,6 +109,8 @@ enum Direction {
 }
 
 impl Direction {
+
+    /// converts a direction into a point which when added to another point gives you where you would be going in that direction.
     fn to_point(self) -> IVec2 {
         match self {
             Direction::North => Point::NEG_Y,
@@ -114,6 +120,7 @@ impl Direction {
         }
     }
 
+    ///is this pipe connected to the specified pipe?
     fn is_pipe_connected(self, pipe: &PipeType) -> bool {
         match &self {
             Direction::North => matches!(
@@ -138,6 +145,7 @@ impl Direction {
         }
     }
 
+    /// an iterator over all of the possible directions.
     pub fn iterator() -> std::slice::Iter<'static, Direction> {
         use Direction::*;
         static DIRECTIONS: [Direction; 4] = [North, East, South, West];
@@ -145,10 +153,13 @@ impl Direction {
     }
 }
 
+/// A point on a grid.
 type Point = IVec2;
 
+/// A grid of [Point]'s, and their [PipeType]'s.
 type Grid = HashMap<Point, PipeType>;
 
+/// turns a string grid into a [Grid].
 fn to_grid(input: &str) -> Grid {
     input
         .lines()
