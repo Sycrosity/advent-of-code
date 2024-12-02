@@ -1,0 +1,9 @@
+#rust
+/target
+
+#profiling
+*.bench.txt
+dhat-heap.json
+
+#macos
+**/*.DS_Store
